@@ -1,0 +1,38 @@
+MODULE controller4
+TITLE 'Controller4'
+
+DECLARATIONS
+Name DEVICE 'p16v8';
+
+
+c0 PIN 8;
+c1 PIN 9;
+
+
+alu0 PIN 12 ISTYPE 'com';
+alu1 PIN 13 ISTYPE 'com';
+alur PIN 14 ISTYPE 'com';
+
+fin PIN 15 ISTYPE 'com';
+
+Q0 PIN 16 ISTYPE 'reg';
+
+
+EQUATIONS
+
+
+TRUTH_TABLE
+(	[c0, c1, Q0] :> [Q0] -> [alu0, alu1, fin, alur])
+	[ 0,  0,  0] :> [ 0] -> [   0,    0,   0,    1];
+	[ 0,  1,  0] :> [ 0] -> [   0,    1,   0,    0];
+	[ 1,  0,  0] :> [ 0] -> [   0,    0,   1,    0];
+	[ 1,  1,  0] :> [ 0] -> [   1,    1,   0,    0];
+ 
+
+"shiftright 11
+"fin 10 
+"aluadd 01
+"alur 00
+
+
+END

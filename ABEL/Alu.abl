@@ -1,0 +1,97 @@
+MODULE alu
+TITLE 'ALU'
+
+DECLARATIONS
+Name DEVICE 'p16v8';
+
+i0 PIN 2;
+i1 PIN 3;
+i2 PIN 4;
+i3 PIN 5;
+
+r PIN 9;
+
+f0 PIN 6;
+f1 PIN 7;
+
+c_in PIN 8;
+c_out PIN 12 ISTYPE 'reg';
+
+carry0 PIN 13 ISTYPE 'com';
+carry1 PIN 14 ISTYPE 'com';
+carry2 PIN 15 ISTYPE 'com';
+
+acc0 PIN 16 ISTYPE 'com';
+acc1 PIN 17 ISTYPE 'com';
+acc2 PIN 18 ISTYPE 'com';
+acc3 PIN 19 ISTYPE 'com';
+
+
+EQUATIONS
+
+WHEN !f0 & !f1 & !r THEN
+	acc0 := acc0;
+WHEN !f0 & !f1 & !r THEN
+	acc1 := acc1;
+WHEN !f0 & !f1 & !r THEN
+	acc2 := acc2;
+WHEN !f0 & !f1 & !r THEN
+	acc3 := acc3;
+WHEN !f0 & !f1 & !r THEN
+	c_out := c_out;
+
+
+
+WHEN !f0 & f1 & !r THEN
+	acc0 := (i0 $ acc0) $ c_in;
+WHEN !f0 & f1 & !r THEN
+	carry0 = ((i0 $ acc0) & c_in) # (i0 & acc0);
+WHEN !f0 & f1 & !r THEN
+	acc1 := (i1 $ acc1) $ carry0;
+WHEN !f0 & f1 & !r THEN
+	carry1 = ((i1 $ acc1) &carry0) # (i1 & acc1);
+WHEN !f0 & f1 & !r THEN
+	acc2 := (i2 $ acc2) $ carry1;
+WHEN !f0 & f1 & !r THEN
+	carry2 = ((i2 $ acc2) &carry1) # (i2 & acc2);
+WHEN !f0 & f1 & !r THEN
+	acc3 := (i3 $ acc3) $ carry2;
+WHEN !f0 & f1 & !r THEN
+	c_out := ((i3 $ acc3) &carry2) # (i3 & acc3);
+
+
+WHEN f0 & !f1 & !r THEN
+	acc0 := !(i0 & acc0)
+WHEN f0 & !f1 & !r THEN
+	acc1 := !(i1 & acc1)
+WHEN f0 & !f1 & !r THEN
+	acc2 := !(i2 & acc2)
+WHEN f0 & !f1 & !r THEN
+	acc3 := !(i3 & acc3)
+
+
+
+WHEN f0 & f1 & !r THEN
+	acc3 := c_out;
+WHEN f0 & f1 & !r THEN
+	acc2 := acc3;	
+WHEN f0 & f1 & !r THEN
+	acc1 := acc2;
+WHEN f0 & f1 & !r THEN
+	acc0 := acc1;
+WHEN f0 & f1 & !r THEN
+	c_out := 0;
+
+
+WHEN r THEN
+	acc0 := 0;
+WHEN r THEN
+	acc1 := 0;
+WHEN r THEN
+	acc2 := 0;
+WHEN r THEN
+	acc3 := 0;
+WHEN r THEN 
+	c_out := 0;
+
+END

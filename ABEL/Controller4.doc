@@ -1,0 +1,165 @@
+
+
+
+                                                                      Page 1
+EZ-ABEL 4.30  -  Device Utilization Chart         Tue May 16 14:15:35 19<3
+
+Controller4
+
+    ==== P16V8R Programmed Logic ====
+
+
+Q0.D   = !(0); " ISTYPE 'INVERT'
+
+alur     = (  !c0 & !c1 & !Q0 );
+
+fin     = (  c0 & !c1 & !Q0 );
+
+alu1     = (  c1 & !Q0 );
+
+alu0     = (  c0 & c1 & !Q0 );
+
+
+
+
+                                                                      Page 2
+EZ-ABEL 4.30  -  Device Utilization Chart         Tue May 16 14:15:35 19<3
+
+Controller4
+
+                         ==== P16V8R Chip Diagram ====
+
+
+
+                                    P16V8R
+
+                         +---------\       /---------+
+                         |          \     /          |
+                         |           -----           |
+                         |  1                    20  | Vcc                     
+                         |                           |
+                         |  2                    19  |                         
+                         |                           |
+                         |  3                    18  |                         
+                         |                           |
+                         |  4                    17  |                         
+                         |                           |
+                         |  5                    16  | !Q0                     
+                         |                           |
+                         |  6                    15  | !fin                    
+                         |                           |
+                         |  7                    14  | !alur                   
+                         |                           |
+                      c0 |  8                    13  | !alu1                   
+                         |                           |
+                      c1 |  9                    12  | !alu0                   
+                         |                           |
+                     GND | 10                    11  |                         
+                         |                           |
+                         |                           |
+                         `---------------------------'
+
+                        SIGNATURE: N/A
+
+
+
+                                                                      Page 3
+EZ-ABEL 4.30  -  Device Utilization Chart         Tue May 16 14:15:35 19<3
+
+Controller4
+
+                ==== P16V8R Resource Allocations ====
+
+
+        Device        | Resource  |   Design    |    Part     |  
+       Resources      | Available | Requirement | Utilization | Unused
+======================|===========|=============|=============|==============
+                      |           |             |             |
+Dedicated input pins  |      8    |       2     |     2       |     6 ( 75 %)
+Combinatorial inputs  |      8    |       2     |     2       |     6 ( 75 %)
+Registered inputs     |      -    |       0     |     -       |     -
+                      |           |             |             |
+Dedicated output pins |      -    |       4     |     -       |     -
+Bidirectional pins    |      8    |       1     |     5       |     3 ( 37 %)
+Combinatorial outputs |      -    |       4     |     -       |     -
+Registered outputs    |      -    |       1     |     -       |     -
+Reg/Com outputs       |      8    |       -     |     5       |     3 ( 37 %)
+Two-input XOR         |      -    |       0     |     -       |     -
+                      |           |             |             |
+Buried nodes          |      -    |       0     |     -       |     -
+Buried registers      |      -    |       0     |     -       |     -
+Buried combinatorials |      -    |       0     |     -       |     -
+
+
+
+                                                                      Page 4
+EZ-ABEL 4.30  -  Device Utilization Chart         Tue May 16 14:15:35 19<3
+
+Controller4
+
+                ==== P16V8R Product Terms Distribution ====
+
+
+            Signal             |    Pin   | Terms | Terms | Terms
+             Name              | Assigned | Used  |  Max  | Unused
+===============================|==========|=======|=======|=======
+Q0.REG                         |   16     |   0   |   8   |   8
+alur                           |   14     |   1   |   7   |   6
+fin                            |   15     |   1   |   7   |   6
+alu1                           |   13     |   1   |   7   |   6
+alu0                           |   12     |   1   |   7   |   6
+
+
+     ==== List of Inputs/Feedbacks ====
+
+Signal Name                    | Pin      | Pin Type
+============================== |==========|=========
+c0                             |    8     | INPUT
+c1                             |    9     | INPUT
+Q0                             |   16     | BIDIR
+
+
+
+                                                                      Page 5
+EZ-ABEL 4.30  -  Device Utilization Chart         Tue May 16 14:15:35 19<3
+
+Controller4
+
+    ==== P16V8R Unused Resources ====
+
+
+ Pin   |  Pin   |   Product   | Flip-flop
+Number |  Type  |   Terms     |   Type
+=======|========|=============|==========
+    2  |  INPUT |      -      |    -   
+    3  |  INPUT |      -      |    -   
+    4  |  INPUT |      -      |    -   
+    5  |  INPUT |      -      |    -   
+    6  |  INPUT |      -      |    -   
+    7  |  INPUT |      -      |    -   
+   17  |  BIDIR | NORMAL  7   |    D
+   18  |  BIDIR | NORMAL  7   |    D
+   19  |  BIDIR | NORMAL  7   |    D
+
+
+
+                                                                      Page 6
+EZ-ABEL 4.30  -  Device Utilization Chart         Tue May 16 14:15:35 19<3
+
+Controller4
+
+    ==== I/O Files ====
+
+
+Module: 'controll'
+
+
+Input files
+===========
+ABEL PLA file: $$$.tt2
+Device library: P16V8R.dev
+
+Output files
+============
+Report file: $$$.doc
+Programmer load file: name.jed

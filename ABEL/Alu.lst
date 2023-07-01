@@ -1,0 +1,177 @@
+0001 |MODULE alu
+0002 |TITLE 'ALU'
+0003 |
+0004 |DECLARATIONS
+0005 |Name DEVICE 'p16v8';
+0006 |
+0007 |i0 PIN 2;
+0008 |i1 PIN 3;
+0009 |i2 PIN 4;
+0010 |i3 PIN 5;
+0011 |
+0012 |r PIN 9;
+0013 |
+0014 |f0 PIN 6;
+0015 |f1 PIN 7;
+0016 |
+0017 |c_in PIN 8;
+0018 |c_out PIN 12 ISTYPE 'reg';
+0019 |
+0020 |carry0 PIN 13 ISTYPE 'com';
+0021 |carry1 PIN 14 ISTYPE 'com';
+0022 |carry2 PIN 15 ISTYPE 'com';
+0023 |
+0024 |acc0 PIN 16 ISTYPE 'com';
+0025 |acc1 PIN 17 ISTYPE 'com';
+0026 |acc2 PIN 18 ISTYPE 'com';
+0027 |acc3 PIN 19 ISTYPE 'com';
+0028 |
+0029 |
+0030 |EQUATIONS
+0031 |
+0032 |WHEN !f0 & !f1 & !r THEN
+0033 |	acc0 := acc0;
+                    ^
+Warning 1053: Signal 'acc0' is combinational.
+                    ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0034 |WHEN !f0 & !f1 & !r THEN
+0035 |	acc1 := acc1;
+                    ^
+Warning 1053: Signal 'acc1' is combinational.
+                    ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0036 |WHEN !f0 & !f1 & !r THEN
+0037 |	acc2 := acc2;
+                    ^
+Warning 1053: Signal 'acc2' is combinational.
+                    ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0038 |WHEN !f0 & !f1 & !r THEN
+0039 |	acc3 := acc3;
+                    ^
+Warning 1053: Signal 'acc3' is combinational.
+                    ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0040 |WHEN !f0 & !f1 & !r THEN
+0041 |	c_out := c_out;
+0042 |
+0043 |
+0044 |
+0045 |WHEN !f0 & f1 & !r THEN
+0046 |	acc0 := (i0 $ acc0) $ c_in;
+                 ^
+Warning 1053: Signal 'acc0' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0047 |WHEN !f0 & f1 & !r THEN
+0048 |	carry0 = ((i0 $ acc0) & c_in) # (i0 & acc0);
+0049 |WHEN !f0 & f1 & !r THEN
+0050 |	acc1 := (i1 $ acc1) $ carry0;
+                 ^
+Warning 1053: Signal 'acc1' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0051 |WHEN !f0 & f1 & !r THEN
+0052 |	carry1 = ((i1 $ acc1) &carry0) # (i1 & acc1);
+0053 |WHEN !f0 & f1 & !r THEN
+0054 |	acc2 := (i2 $ acc2) $ carry1;
+                 ^
+Warning 1053: Signal 'acc2' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0055 |WHEN !f0 & f1 & !r THEN
+0056 |	carry2 = ((i2 $ acc2) &carry1) # (i2 & acc2);
+0057 |WHEN !f0 & f1 & !r THEN
+0058 |	acc3 := (i3 $ acc3) $ carry2;
+                 ^
+Warning 1053: Signal 'acc3' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0059 |WHEN !f0 & f1 & !r THEN
+0060 |	c_out := ((i3 $ acc3) &carry2) # (i3 & acc3);
+0061 |
+0062 |
+0063 |WHEN f0 & !f1 & !r THEN
+0064 |	acc0 := !(i0 & acc0)
+                 ^
+Warning 1053: Signal 'acc0' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0065 |WHEN f0 & !f1 & !r THEN
+0066 |	acc1 := !(i1 & acc1)
+                 ^
+Warning 1053: Signal 'acc1' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0067 |WHEN f0 & !f1 & !r THEN
+0068 |	acc2 := !(i2 & acc2)
+                 ^
+Warning 1053: Signal 'acc2' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0069 |WHEN f0 & !f1 & !r THEN
+0070 |	acc3 := !(i3 & acc3)
+                 ^
+Warning 1053: Signal 'acc3' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0071 |
+0072 |
+0073 |
+0074 |WHEN f0 & f1 & !r THEN
+0075 |	acc3 := c_out;
+                     ^
+Warning 1053: Signal 'acc3' is combinational.
+                     ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0076 |WHEN f0 & f1 & !r THEN
+0077 |	acc2 := acc3;	
+                    ^
+Warning 1053: Signal 'acc2' is combinational.
+                    ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0078 |WHEN f0 & f1 & !r THEN
+0079 |	acc1 := acc2;
+                    ^
+Warning 1053: Signal 'acc1' is combinational.
+                    ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0080 |WHEN f0 & f1 & !r THEN
+0081 |	acc0 := acc1;
+                    ^
+Warning 1053: Signal 'acc0' is combinational.
+                    ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0082 |WHEN f0 & f1 & !r THEN
+0083 |	c_out := 0;
+0084 |
+0085 |
+0086 |WHEN r THEN
+0087 |	acc0 := 0;
+                 ^
+Warning 1053: Signal 'acc0' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0088 |WHEN r THEN
+0089 |	acc1 := 0;
+                 ^
+Warning 1053: Signal 'acc1' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0090 |WHEN r THEN
+0091 |	acc2 := 0;
+                 ^
+Warning 1053: Signal 'acc2' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0092 |WHEN r THEN
+0093 |	acc3 := 0;
+                 ^
+Warning 1053: Signal 'acc3' is combinational.
+                 ^
+Warning 1043: ':=' should not be used with output type 'COM'.
+0094 |WHEN r THEN 
+0095 |	c_out := 0;
+0096 |
+0097 |END

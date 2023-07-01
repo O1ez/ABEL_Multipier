@@ -1,0 +1,38 @@
+0001 |MODULE controller4
+0002 |TITLE 'Controller4'
+0003 |
+0004 |DECLARATIONS
+0005 |Name DEVICE 'p16v8';
+0006 |
+0007 |
+0008 |c0 PIN 8;
+0009 |c1 PIN 9;
+0010 |
+0011 |
+0012 |alu0 PIN 12 ISTYPE 'com';
+0013 |alu1 PIN 13 ISTYPE 'com';
+0014 |alur PIN 14 ISTYPE 'com';
+0015 |
+0016 |fin PIN 15 ISTYPE 'com';
+0017 |
+0018 |Q0 PIN 16 ISTYPE 'reg';
+0019 |
+0020 |
+0021 |EQUATIONS
+0022 |
+0023 |
+0024 |TRUTH_TABLE
+0025 |(	[c0, c1, Q0] :> [Q0] -> [alu0, alu1, fin, alur])
+0026 |	[ 0,  0,  0] :> [ 0] -> [   0,    0,   0,    1];
+0027 |	[ 0,  1,  0] :> [ 0] -> [   0,    1,   0,    0];
+0028 |	[ 1,  0,  0] :> [ 0] -> [   0,    0,   1,    0];
+0029 |	[ 1,  1,  0] :> [ 0] -> [   1,    1,   0,    0];
+0030 | 
+0031 |
+0032 |"shiftright 11
+0033 |"fin 10 
+0034 |"aluadd 01
+0035 |"alur 00
+0036 |
+0037 |
+0038 |END

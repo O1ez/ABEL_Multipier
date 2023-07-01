@@ -1,0 +1,6 @@
+#$ SOURCEFILE $$$.abl
+#$ LISTFILE $$$.lst
+#$ MODULE controll
+#$ DEVICE 'p16v8' ASSIGNED
+#$ PLAFILE controll.tt1
+#$ JEDECFILE name

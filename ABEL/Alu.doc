@@ -1,0 +1,227 @@
+
+
+
+                                                                      Page 1
+EZ-ABEL 4.30  -  Device Utilization Chart         Fri May  5 13:51:34 19<3
+
+ALU
+
+    ==== P16V8R Programmed Logic ====
+
+
+acc0.D   = (  r 
+            #   i0 & f0 & !f1 & acc0 
+            #   !i0 & !f0 & f1 & c_in & acc0 
+            #   i0 & !f0 & f1 & !c_in & acc0 
+            #   !f0 & !f1 & !acc0 
+            #   i0 & !f0 & c_in & !acc0 
+            #   !i0 & !f0 & !c_in & !acc0 
+            #   f0 & f1 & !acc1 ); " ISTYPE 'INVERT'
+
+acc1.D   = (  r 
+            #   i1 & f0 & !f1 & acc1 
+            #   !i1 & !f0 & f1 & carry0 & acc1 
+            #   i1 & !f0 & f1 & !carry0 & acc1 
+            #   !f0 & !f1 & !acc1 
+            #   i1 & !f0 & carry0 & !acc1 
+            #   !i1 & !f0 & !carry0 & !acc1 
+            #   f0 & f1 & !acc2 ); " ISTYPE 'INVERT'
+
+acc2.D   = (  r 
+            #   i2 & f0 & !f1 & acc2 
+            #   !i2 & !f0 & f1 & carry1 & acc2 
+            #   i2 & !f0 & f1 & !carry1 & acc2 
+            #   !f0 & !f1 & !acc2 
+            #   i2 & !f0 & carry1 & !acc2 
+            #   !i2 & !f0 & !carry1 & !acc2 
+            #   f0 & f1 & !acc3 ); " ISTYPE 'INVERT'
+
+acc3.D   = (  r 
+            #   f0 & f1 & !c_out 
+            #   i3 & f0 & !f1 & acc3 
+            #   !i3 & !f0 & f1 & carry2 & acc3 
+            #   i3 & !f0 & f1 & !carry2 & acc3 
+            #   !f0 & !f1 & !acc3 
+            #   i3 & !f0 & carry2 & !acc3 
+            #   !i3 & !f0 & !carry2 & !acc3 ); " ISTYPE 'INVERT'
+
+c_out.D   = !(  !r & !f0 & !f1 & c_out 
+             #   i3 & !r & !f0 & f1 & carry2 
+             #   i3 & !r & !f0 & f1 & acc3 
+             #   !r & !f0 & f1 & carry2 & acc3 ); " ISTYPE 'INVERT'
+
+carry0     = (  i0 & !r & !f0 & f1 & c_in 
+              #   i0 & !r & !f0 & f1 & acc0 
+              #   !r & !f0 & f1 & c_in & acc0 );
+
+carry1     = (  i1 & !r & !f0 & f1 & carry0 
+              #   i1 & !r & !f0 & f1 & acc1 
+              #   !r & !f0 & f1 & carry0 & acc1 );
+
+carry2     = (  i2 & !r & !f0 & f1 & carry1 
+
+
+
+                                                                      Page 2
+EZ-ABEL 4.30  -  Device Utilization Chart         Fri May  5 13:51:34 19<3
+
+ALU
+
+    ==== P16V8R Programmed Logic ====
+
+
+              #   i2 & !r & !f0 & f1 & acc2 
+              #   !r & !f0 & f1 & carry1 & acc2 );
+
+
+
+
+                                                                      Page 3
+EZ-ABEL 4.30  -  Device Utilization Chart         Fri May  5 13:51:34 19<3
+
+ALU
+
+                         ==== P16V8R Chip Diagram ====
+
+
+
+                                    P16V8R
+
+                         +---------\       /---------+
+                         |          \     /          |
+                         |           -----           |
+                         |  1                    20  | Vcc                     
+                         |                           |
+                      i0 |  2                    19  | !acc3                   
+                         |                           |
+                      i1 |  3                    18  | !acc2                   
+                         |                           |
+                      i2 |  4                    17  | !acc1                   
+                         |                           |
+                      i3 |  5                    16  | !acc0                   
+                         |                           |
+                      f0 |  6                    15  | !carry2                 
+                         |                           |
+                      f1 |  7                    14  | !carry1                 
+                         |                           |
+                    c_in |  8                    13  | !carry0                 
+                         |                           |
+                       r |  9                    12  | !c_out                  
+                         |                           |
+                     GND | 10                    11  |                         
+                         |                           |
+                         |                           |
+                         `---------------------------'
+
+                        SIGNATURE: N/A
+
+
+
+                                                                      Page 4
+EZ-ABEL 4.30  -  Device Utilization Chart         Fri May  5 13:51:34 19<3
+
+ALU
+
+                ==== P16V8R Resource Allocations ====
+
+
+        Device        | Resource  |   Design    |    Part     |  
+       Resources      | Available | Requirement | Utilization | Unused
+======================|===========|=============|=============|==============
+                      |           |             |             |
+Dedicated input pins  |      8    |       8     |     8       |     0 (  0 %)
+Combinatorial inputs  |      8    |       8     |     8       |     0 (  0 %)
+Registered inputs     |      -    |       0     |     -       |     -
+                      |           |             |             |
+Dedicated output pins |      -    |       0     |     -       |     -
+Bidirectional pins    |      8    |       8     |     8       |     0 (  0 %)
+Combinatorial outputs |      -    |       3     |     -       |     -
+Registered outputs    |      -    |       5     |     -       |     -
+Reg/Com outputs       |      8    |       -     |     8       |     0 (  0 %)
+Two-input XOR         |      -    |       0     |     -       |     -
+                      |           |             |             |
+Buried nodes          |      -    |       0     |     -       |     -
+Buried registers      |      -    |       0     |     -       |     -
+Buried combinatorials |      -    |       0     |     -       |     -
+
+
+
+                                                                      Page 5
+EZ-ABEL 4.30  -  Device Utilization Chart         Fri May  5 13:51:34 19<3
+
+ALU
+
+                ==== P16V8R Product Terms Distribution ====
+
+
+            Signal             |    Pin   | Terms | Terms | Terms
+             Name              | Assigned | Used  |  Max  | Unused
+===============================|==========|=======|=======|=======
+acc0.REG                       |   16     |   8   |   8   |   0
+acc1.REG                       |   17     |   8   |   8   |   0
+acc2.REG                       |   18     |   8   |   8   |   0
+acc3.REG                       |   19     |   8   |   8   |   0
+c_out.REG                      |   12     |   4   |   8   |   4
+carry0                         |   13     |   3   |   7   |   4
+carry1                         |   14     |   3   |   7   |   4
+carry2                         |   15     |   3   |   7   |   4
+
+
+     ==== List of Inputs/Feedbacks ====
+
+Signal Name                    | Pin      | Pin Type
+============================== |==========|=========
+i0                             |    2     | INPUT
+i1                             |    3     | INPUT
+i2                             |    4     | INPUT
+i3                             |    5     | INPUT
+r                              |    9     | INPUT
+f0                             |    6     | INPUT
+f1                             |    7     | INPUT
+c_in                           |    8     | INPUT
+c_out                          |   12     | BIDIR
+carry0                         |   13     | BIDIR
+carry1                         |   14     | BIDIR
+carry2                         |   15     | BIDIR
+acc0                           |   16     | BIDIR
+acc1                           |   17     | BIDIR
+acc2                           |   18     | BIDIR
+acc3                           |   19     | BIDIR
+
+
+
+                                                                      Page 6
+EZ-ABEL 4.30  -  Device Utilization Chart         Fri May  5 13:51:34 19<3
+
+ALU
+
+    ==== P16V8R Unused Resources ====
+
+
+ Pin   |  Pin   |   Product   | Flip-flop
+Number |  Type  |   Terms     |   Type
+=======|========|=============|==========
+   -   |    -   |     -       |    -
+
+
+
+                                                                      Page 7
+EZ-ABEL 4.30  -  Device Utilization Chart         Fri May  5 13:51:34 19<3
+
+ALU
+
+    ==== I/O Files ====
+
+
+Module: 'alu'
+
+
+Input files
+===========
+ABEL PLA file: $$$.tt2
+Device library: P16V8R.dev
+
+Output files
+============
+Report file: $$$.doc
+Programmer load file: name.jed

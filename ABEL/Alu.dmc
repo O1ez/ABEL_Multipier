@@ -1,0 +1,6 @@
+#$ SOURCEFILE $$$.abl
+#$ LISTFILE $$$.lst
+#$ MODULE alu
+#$ DEVICE 'p16v8' ASSIGNED
+#$ PLAFILE alu.tt1
+#$ JEDECFILE name
